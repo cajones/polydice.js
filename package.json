@@ -1,0 +1,19 @@
+{
+  "name": "polydice.js",
+  "version": "0.0.0",
+  "description": "",
+  "main": "/lib/polydice.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "~1.14.0",
+    "expect.js": "~0.2.0"
+  },
+  "scripts": {
+    "test": "mocha tests/specs --recursive --require expect.js"
+  },
+  "author": "",
+  "license": "BSD-2-Clause"
+}
