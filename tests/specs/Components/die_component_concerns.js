@@ -2,10 +2,10 @@ var expect = require('expect.js'),
     lib = '../../../lib',
     components = lib + '/components';
 
-describe('Given I have a parser', function () {
+describe('Given I have a dice component', function () {
     var DieComponent = require(components + '/DieComponent');
 
-    describe('When I create a six-sided component', function () {
+    describe('When I create it', function () {
 
         it('it should provide an unresolved dice component of the correct number of sides' , function () {
             var die = new DieComponent(6);
@@ -16,7 +16,7 @@ describe('Given I have a parser', function () {
 
     });
 
-    describe('When I resolve a six-sided component', function () {
+    describe('When I resolve it', function () {
 
         it('it should provide a number between 1 and the number of sides' , function () {
             var die = new DieComponent(6);
