@@ -17,11 +17,11 @@ describe('Given I have a multiple dice component', function () {
 
     });
 
-    describe('When I resolve a multiple dice  component', function () {
+    describe('When I resolve it', function () {
 
         it('it should provide an array of values equal to the quanity each between 1 and the number of sides' , function () {
             var component = new MultiDieComponent(3, 6),
-                result = component.resolve();
+                result = component.resolve().value;
 
             expect(result).to.be.an(Array);
             expect(result.length).to.be(3);
@@ -34,7 +34,7 @@ describe('Given I have a multiple dice component', function () {
         it('it should become resolved and consistently provide the resolved number' , function () {
             var component = new MultiDieComponent(3, 6);
 
-            expect(component.resolve()).to.be(component.resolve());
+            expect(component.resolve().value).to.be(component.resolve().value);
         });
 
     });

@@ -21,15 +21,15 @@ describe('Given I have a dice component', function () {
         it('it should provide a number between 1 and the number of sides' , function () {
             var die = new DieComponent(6);
 
-            expect(die.resolve()).to.be.within(1, die.sides);
+            expect(die.resolve().value).to.be.within(1, die.sides);
         });
 
         it('it should become resolved and consistently provide the resolved number' , function () {
             var die = new DieComponent(6),
-                resolvedValue = die.resolve();
+                resolvedValue = die.resolve().value;
 
             expect(die.hasResolved).to.be(true);
-            expect(die.resolve()).to.be(resolvedValue);
+            expect(die.resolve().value).to.be(resolvedValue);
         });
 
     });

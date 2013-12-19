@@ -15,7 +15,7 @@ describe('Given I have a parser', function () {
             expect(parser.parse(expression)).to.be.a(Array);
             expect(parser.parse(expression).length).to.be(1);
             expect(parser.parse(expression)[0]).to.be.a(ValueComponent);
-            expect(parser.parse(expression)[0].resolve()).to.be(parseInt(expression, 10));
+            expect(parser.parse(expression)[0].resolve().value).to.be(parseInt(expression, 10));
         });
 
     });
@@ -29,10 +29,10 @@ describe('Given I have a parser', function () {
             expect(parser.parse(expression)).to.be.a(Array);
             
             expect(parser.parse(expression)[0]).to.be.a(ValueComponent);
-            expect(parser.parse(expression)[0].resolve()).to.be(parseInt(expression.split(',')[0], 10));
+            expect(parser.parse(expression)[0].resolve().value).to.be(parseInt(expression.split(',')[0], 10));
 
             expect(parser.parse(expression)[1]).to.be.a(ValueComponent);
-            expect(parser.parse(expression)[1].resolve()).to.be(parseInt(expression.split(',')[1], 10));
+            expect(parser.parse(expression)[1].resolve().value).to.be(parseInt(expression.split(',')[1], 10));
         });
     
     });

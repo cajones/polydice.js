@@ -1,0 +1,40 @@
+
+module.exports = function(grunt) {
+    grunt.loadNpmTasks('grunt-browserify');
+    grunt.loadNpmTasks('grunt-template');
+    grunt.loadNpmTasks('grunt-mocha-test');
+    
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+
+        mochaTest: {
+            test: {
+                options: {
+                    reporter: 'spec',
+                    require: ['expect.js']
+                },
+                src: ['tests/specs/**/*.js'],
+
+            }
+        }, 
+
+        browserify: {
+            dist: {
+               files: {
+                  'dist/polydice.js': ['lib/polydice.js'],
+                }
+            }
+        },
+
+        template: {
+            dist: {
+                files: {
+                    'dist/index.html' : ['src/index.html.tpl']
+                }
+            }
+        } 
+    });
+
+    grunt.registerTask('build', ['browserify', 'template']);
+    grunt.registerTask('test', ['mochaTest:test']);
+};
