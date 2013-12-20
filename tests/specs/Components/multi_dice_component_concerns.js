@@ -19,24 +19,19 @@ describe('Given I have a multiple dice component', function () {
 
     describe('When I resolve it', function () {
 
-        it('it should provide an array of values equal to the quanity each between 1 and the number of sides' , function () {
+        it('it should resolve the set of components equal to the quantity each between 1 and the number of sides' , function () {
             var component = new MultiDieComponent(3, 6),
-                result = component.resolve().value;
+                result = component.resolve();
 
-            expect(result).to.be.an(Array);
-            expect(result.length).to.be(3);
-            result.forEach(function (die) {
+            expect(result).to.be.a(MultiDieComponent);
+            expect(result.members.length).to.be(3);
+            result.members.forEach(function (die) {
                 expect(die).to.be.a(DieComponent);
                 expect(die.hasResolved).to.be(true);
+                expect(die.sides).to.be(6);
+                expect(die.value).to.be.within(1, die.sides);
             });
         });
-
-        it('it should become resolved and consistently provide the resolved number' , function () {
-            var component = new MultiDieComponent(3, 6);
-
-            expect(component.resolve().value).to.be(component.resolve().value);
-        });
-
     });
 
 });

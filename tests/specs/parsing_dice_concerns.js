@@ -5,7 +5,8 @@ var expect = require('expect.js'),
 describe('Given I have a parser', function () {
     var Parser = require(lib +'/Parser'),
         DieComponent = require(components + '/DieComponent'),
-        MultiDieComponent = require(components + '/MultiDieComponent');;
+        MultiDieComponent = require(components + '/MultiDieComponent')
+        Set = require(components + '/Set');
 
     describe('When I parse an expression of a single dice component', function () {
 
@@ -13,10 +14,10 @@ describe('Given I have a parser', function () {
             var parser = new Parser(),
             expression = 'd12';
 
-            expect(parser.parse(expression)).to.be.a(Array);
+            expect(parser.parse(expression)).to.be.a(Set);
             expect(parser.parse(expression).length).to.be(1);
-            expect(parser.parse(expression)[0]).to.be.a(DieComponent);
-            expect(parser.parse(expression)[0].sides).to.be(12);
+            expect(parser.parse(expression).members[0]).to.be.a(DieComponent);
+            expect(parser.parse(expression).members[0].sides).to.be(12);
         });
 
     });
@@ -27,27 +28,27 @@ describe('Given I have a parser', function () {
             var parser = new Parser(),
             expression = '4d8';
 
-            expect(parser.parse(expression)).to.be.a(Array);
+            expect(parser.parse(expression)).to.be.a(Set);
             expect(parser.parse(expression).length).to.be(1);
-            expect(parser.parse(expression)[0]).to.be.a(MultiDieComponent);
+            expect(parser.parse(expression).members[0]).to.be.a(MultiDieComponent);
         });
 
         it('it should provide a component of the correct sides', function () {
             var parser = new Parser(),
             expression = '4d8';
 
-            expect(parser.parse(expression)).to.be.a(Array);
+            expect(parser.parse(expression)).to.be.a(Set);
             expect(parser.parse(expression).length).to.be(1);
-            expect(parser.parse(expression)[0].sides).to.be(8);
+            expect(parser.parse(expression).members[0].sides).to.be(8);
         });
 
         it('it should provide a component of the correct quantity', function () {
             var parser = new Parser(),
             expression = '4d8';
 
-            expect(parser.parse(expression)).to.be.a(Array);
+            expect(parser.parse(expression)).to.be.a(Set);
             expect(parser.parse(expression).length).to.be(1);
-            expect(parser.parse(expression)[0].quantity).to.be(4);
+            expect(parser.parse(expression).members[0].quantity).to.be(4);
         });
     });
 
@@ -57,15 +58,15 @@ describe('Given I have a parser', function () {
             var parser = new Parser(),
             expression = '1 1 2 3 5 8 13';
 
-            expect(parser.parse(expression)).to.be.a(Array);
+            expect(parser.parse(expression)).to.be.a(Set);
             expect(parser.parse(expression).length).to.be(7);
-            expect(parser.parse(expression)[0].value).to.be(1);
-            expect(parser.parse(expression)[1].value).to.be(1);
-            expect(parser.parse(expression)[2].value).to.be(2);
-            expect(parser.parse(expression)[3].value).to.be(3);
-            expect(parser.parse(expression)[4].value).to.be(5);
-            expect(parser.parse(expression)[5].value).to.be(8);
-            expect(parser.parse(expression)[6].value).to.be(13);
+            expect(parser.parse(expression).members[0].value).to.be(1);
+            expect(parser.parse(expression).members[1].value).to.be(1);
+            expect(parser.parse(expression).members[2].value).to.be(2);
+            expect(parser.parse(expression).members[3].value).to.be(3);
+            expect(parser.parse(expression).members[4].value).to.be(5);
+            expect(parser.parse(expression).members[5].value).to.be(8);
+            expect(parser.parse(expression).members[6].value).to.be(13);
         });
     
     });

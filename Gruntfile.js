@@ -3,9 +3,17 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-template');
     grunt.loadNpmTasks('grunt-mocha-test');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+
+        watch: {
+            tests: {
+                files: ['tests/specs/**/*.js', 'lib/**/*.js'],
+                tasks: ['mochaTest:test']
+            }   
+        },
 
         mochaTest: {
             test: {
@@ -13,8 +21,7 @@ module.exports = function(grunt) {
                     reporter: 'spec',
                     require: ['expect.js']
                 },
-                src: ['tests/specs/**/*.js'],
-
+                src: ['tests/specs/**/*.js']
             }
         }, 
 
